@@ -1,0 +1,6 @@
+[package]
+name = "tee"
+version = "0.1.1"
+authors = ["Ed Brook <edbrook@gmail.com>"]
+
+[dependencies]
