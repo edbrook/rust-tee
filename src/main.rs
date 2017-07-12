@@ -2,11 +2,11 @@ use std::env;
 
 use std::collections::HashSet;
 use std::fs::{File, OpenOptions};
-use std::io::{self,Write};
+use std::io::{self, Write};
 
 
 #[derive(Debug, Hash, Eq, PartialEq)]
-enum ConfigOpt {
+enum ConfigOption {
     Help,
     Append
 }
@@ -14,7 +14,7 @@ enum ConfigOpt {
 
 #[derive(Debug)]
 struct Config {
-    options: HashSet<ConfigOpt>,
+    options: HashSet<ConfigOption>,
     files: Vec<String>
 }
 
@@ -28,11 +28,11 @@ impl Config {
     }
 
     fn is_help_set(&self) -> bool {
-        self.options.contains(&ConfigOpt::Help)
+        self.options.contains(&ConfigOption::Help)
     }
 
     fn is_append_set(&self) -> bool {
-        self.options.contains(&ConfigOpt::Append)
+        self.options.contains(&ConfigOption::Append)
     }
 }
 
@@ -67,9 +67,9 @@ fn parse_args(args: &Vec<String>) -> Config {
     let mut config = Config::new();
     for arg in &args[1..args.len()] {
         if arg == "--help" || arg == "-h" {
-            config.options.insert(ConfigOpt::Help);
+            config.options.insert(ConfigOption::Help);
         } else if arg == "-a" {
-            config.options.insert(ConfigOpt::Append);
+            config.options.insert(ConfigOption::Append);
         } else if arg.starts_with("-") {
             writeln!(&mut io::stderr(), "Ignoring unknown option: {}", arg)
                 .expect("Error while parsing options!");
