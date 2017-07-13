@@ -39,7 +39,7 @@ impl Config {
 
 fn tee<T: io::Read>(input: &mut T, files: &Vec<File>) -> io::Result<()> {
     let mut stdout = io::stdout();
-    let mut line: &mut[u8] = &mut[0; 4096];
+    let line: &mut[u8] = &mut[0; 4096];
     loop {
         let n = input.read(line)?;
         if n>0 {
