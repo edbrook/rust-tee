@@ -81,7 +81,7 @@ fn parse_args(args: &Vec<String>) -> Config {
 }
 
 
-fn open_files(file_names: &Vec<String>, append: bool) -> Result<Vec<File>,io::Error> {
+fn open_files(file_names: &Vec<String>, append: bool) -> io::Result<Vec<File>> {
     let mut files = vec![];
     for file_name in file_names {
         let mut open_opts = OpenOptions::new();
